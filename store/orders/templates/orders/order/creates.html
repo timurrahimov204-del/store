@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<h1>Оформление заказа</h1>
+<div>
+    <ul>
+        {% for item in cart %}
+        {% with product=item.product %}
+        <li>
+            {{ product.name }} - {{ item.quantity }} x {{ item.price }} = {{ item.total_price }}
+        </li>
+        {% endwith %}
+        {% endfor %}
+    </ul>
+</div>
+
+<form method='post'>
+    {% csrf_token %}
+    {{form.as_p}}
+
+<button type="submit">
+    Оформить заказ
+</button>
+</form>
+{% endblock %}

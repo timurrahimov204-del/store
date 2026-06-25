@@ -1,0 +1,42 @@
+services:
+
+  db:
+    image: postgres:17
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: shop_db
+      POSTGRES_USER: shop_user
+      POSTGRES_PASSWORD: shop_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+
+  web:
+    build: .
+    container_name: web
+    restart: always
+    command: >
+      sh -c "
+      python manage.py migrate &&
+      gunicorn store.wsgi:application --bind 0.0.0.0:8000
+      "
+    volumes:
+    - .:/store
+    ports:
+    - "8005:8000"
+    environment:
+      DB_ENGINE: django.db.backends.postgresql
+      DB_NAME: shop_db
+      DB_USER: shop_user
+      DB_PASSWORD: shop_password
+      DB_HOST: db
+      ALLOWED_HOSTS: localhost,127.0.0.1,web
+      PYTHONPATH: /store/store
+      DJANGO_SETTINGS_MODULE: store.settings
+    depends_on:
+    - db
+
+
+volumes:
+  postgres_data:

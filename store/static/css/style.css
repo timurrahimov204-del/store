@@ -1,0 +1,150 @@
+/* body {
+    background-color: #DDDDDD;
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+a:active {
+    color: #ffa600;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ff4000;
+    text-decoration: none;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.product {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    height: 10vh;
+}
+
+.logo {
+    flex: 1;
+    background-color: yellow;
+}
+
+.header-title {
+    flex: 6;
+    background-color: #AAAA;
+    font-weight: 900;
+    text-align: center;
+    font-size: 45px;
+}
+
+.main {
+    display: flex;
+    height: 80vh;
+}
+
+.side {
+    flex: 1;
+    background-color: gray;
+}
+
+.content {
+    flex: 5;
+    background-color: white;
+}
+
+.footer {
+    height: 10vh;
+    background-color: gray;
+} */
+
+body {
+    background-color: #DDDDDD;
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+a:active {
+    color: #ffa600;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ff4000;
+    text-decoration: none;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.product {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.header {
+    display: flex;
+    height: 10vh;
+    text-align: center;
+}
+
+.logo {
+    flex: 1;
+    background-color: rgb(177, 160, 139);
+;
+}
+
+.header-title {
+    flex: 7;
+    background-color: bisque;
+}
+
+.main {
+    display: flex;
+    height: 80vh;
+}
+
+.side {
+    flex: 1;
+    background-color: #333333;
+    color:#DDDDDD;
+}
+
+.content {
+    flex: 7;
+    background-color: #AAAAAA;
+}
+
+.footer {
+    height: 10vh;
+    background-color: bisque;
+}

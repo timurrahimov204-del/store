@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Успешное оформление заказа{% endblock %}
+
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}Спасибо за заказ! Ваш заказ {{order.id}} успешно оформлен
+<a href="{% url 'catalog:product_list' %}">Вернуться в каталог</a>
+{% endblock %}

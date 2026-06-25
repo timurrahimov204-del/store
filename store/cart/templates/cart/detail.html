@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<h1>В вашей корзине</h1>
+<table class="cart">
+    <thead>
+        <tr>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Цена за штуку</th>
+            <th>Стоимость</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        {% with product=item.product %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>
+
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ item.update_form.quantity}}
+                    {{ item.update_form.override}}
+                     {% csrf_token %}
+                    <input type="submit" value="Обновить">
+                </form>
+
+            </td>
+            <td>{{ item.price }}</td>
+            <td>
+                {{ item.total_price }}
+            </td>
+
+            <td>
+                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                     {% csrf_token %}
+                    <input type="submit" value="X">
+                </form>
+            </td>
+            
+        </tr>
+        {% endwith %}
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <h3>Применить промокод</h3>
+    <form action="{% url "coupons:coupon_apply" %}" method="post">
+        {{coupon_form}}
+        {% csrf_token %}
+        <button type="submit">Применить</button>
+    </form>
+    
+    <p>Итого: {{ cart.get_total_price_with_sale}}</p>
+    <form action="{% url 'orders:order_create' %}">
+        <button type="submit">
+            Перейти к оформлению заказа
+        </button>
+    </form>
+{% endblock %}

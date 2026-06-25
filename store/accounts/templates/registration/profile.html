@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Профиль{% endblock title %}
+
+
+{% block sidebar %}{% endblock sidebar %}
+
+
+{% block content %}<div>
+    <div>
+        <h1>Личный кабинет</h1>
+        <div>
+            <h1>Ваши данные</h1>
+            <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+            <p><strong>Имя:</strong> {{ user.first_name }}</p>  
+            <p><strong>Фамилия:</strong> {{ user.last_name }}</p> 
+            <p><strong>Email:</strong> {{ user.email }}</p> 
+            <p><strong>Дата регистрации:</strong> {{ user.date_joined }}</p>
+            <p><strong>Дата рождения:</strong> {{ user.profile.birth_date }}</p>
+            <p><strong>Номер телефона:</strong> {{ user.profile.tel }}</p>
+            <p><strong>Страна:</strong> {{user.profile.address}}</p>
+            <p><strong>Пол:</strong> {{user.profile.gender}}</p>
+        </div>    
+    </div>
+
+
+
+     <div>
+            <h2>Управление аккаунтом</h2>
+            <p><a href="{% url 'accounts:logout_view' %}">Выйти из аккаунта</a></p>
+        </div>
+    
+    <div>
+        <h2>Активные</h2>
+        {% if active_orders %}
+            {% for order in active_orders%}
+                <li>Заказ #{{ order.id }} от {{ order.created_at|date:"d.m.Y H:i" }} на сумму {{ order.get_total_cost }} руб.</li>
+            {% endfor %}
+        {% else %}
+            <p>У вас пока нет выполненных заказов заказов.</p>
+        {% endif%}
+        
+        <h2>Отмененные</h2>
+        {% if canceled_orders %}
+            {% for order in canceled_orders %}
+                <li>Заказ #{{ order.id }} от {{ order.created_at|date:"d.m.Y H:i" }} на сумму {{ order.get_total_cost }} руб.</li>
+            {% endfor %}
+        {% else %}
+            <p>У вас пока нет отмененных заказов.</p>
+            {% endif %}
+        
+        <h2>Выполненные</h2>
+        {% if completed_orders %}
+            {% for order in completed_orders %}
+                <li>Заказ #{{ order.id }} от {{ order.created_at|date:"d.m.Y H:i" }} на сумму {{ order.get_total_cost }} руб.</li>
+            {% endfor %}
+        {% else %}
+            <p>У вас пока нет выполненных заказов заказов.</p>
+        {% endif %}
+        
+    </div>
+{% endblock content %}
+
+
