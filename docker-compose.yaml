@@ -18,7 +18,7 @@ services:
     restart: always
     command: >
       sh -c "
-      python manage.py migrate &&
+      python store/manage.py migrate &&
       gunicorn store.wsgi:application --bind 0.0.0.0:8000
       "
     volumes:
