@@ -1,3 +1,9 @@
+from decimal import Decimal
+from django.conf import settings
+from catalog.models import Product
+from coupons.models import Coupons
+
+
 class Cart:
     def __init__(self, request):
         self.session = request.session
